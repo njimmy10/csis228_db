@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
     // SQL TABLE CALLEd test 
 
-    const rows = query('SELECT * FROM test', [])
+    const rows = query.query('SELECT * FROM test', [])
     .then(rows => {
         res.json(rows)
     }
