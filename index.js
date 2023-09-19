@@ -3,13 +3,20 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 var db_connection = require('./mysql/config.js');
+var query = require('./mysql/db.js');
 require('dotenv').config()
 
 app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    // SQL TABLE CALLEd test 
+
+    const rows = query('SELECT * FROM test', [])
+    .then(rows => {
+        res.json(rows)
+    }
+    )
 }
 )
 
