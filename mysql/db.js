@@ -19,8 +19,8 @@ const query = async (sql, params) => {
       await connect();
    }
     try {
-        const [rows, fields] = await connection.execute(sql, params);
-        return rows;
+        const [results] = await connection.execute(sql, params);
+        return results;
     }
     catch (err) {
         console.error(err);
