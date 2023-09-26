@@ -1,30 +1,24 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
-const cors = require('cors')
-var db_connection = require('./mysql/config.js');
-var query = require('./mysql/db.js');
-require('dotenv').config()
+const express = require("express");
+const moment = require("moment");
+const { query } = require("./database/db");
+require('dotenv').config();
+const mysql = require("mysql2");
 
-app.use(cors())
-app.use(bodyParser.json())
+const port = process.env.APP_PORT;
 
-app.get('/', (req, res) => {
-    // SQL TABLE CALLEd test 
+const app = express();
 
-    const rows = query.query('SELECT * FROM test', [])
-    .then(rows => {
-        res.json(rows)
-    }
-    )
-}
-)
+const userRoute = require('./routes/user.route');
 
-app.listen(process.env.PORT, () => {
-    console.log(`Example app listening at http://localhost:${process.env.PORT}`)
-}
-)
+app.get("/", (req, res)=>{
+    res.status(200).json({message: "this is the index page"})
+});
+
+app.use('/api/users', userRoute);
 
 
 
+app.listen(port, ()=>{
+    console.log(`my app is listening ${port}`);
+})
 
