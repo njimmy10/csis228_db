@@ -13,7 +13,7 @@ const loadUser = async() => {
 
 const loadSingleUser = async(id)=>{
     try{
-        let sql = `SELECT * FROM users WHERE user_id = ?`;
+        let sql = `SELECT * FROM users WHERE USER_ID = ?`;
         const user = await query(sql, [id]);
         return user;
     }catch(erorr){
@@ -22,18 +22,40 @@ const loadSingleUser = async(id)=>{
 }
 
 const insertUser = async(user) =>{
-    const {user_name, user_username, user_password, user_dob} = user;
+    const {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = user;
     let inserSQL = `INSERT INTO user
     VALUES 
-    (?, ?, ?, ?)`;
+    (?, ?, ?, ?, ?, ?, ?)`;
 
-    const result = await query(sql, [user_name, user_username, user_password, moment(user_dob).format("YYYY-MM-DD")]);
+    const result = await query(sql, [USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, moment(USER_DOB).format("YYYY-MM-DD")]);
 
     return result;
 }
+
+const updateUser = async(user) =>{
+    const {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = user;
+    let sql = `UPDATE user  
+    SET USER_USERNAME = ?, USER_FULL_NAME = ?, USER_PROFILE_PICTURE = ?, USER_BIO = ?, USER_EMAIL = ?, USER_PASSWORD = ?, USER_DOB = ?
+    WHERE USER_ID = ?`;
+
+    const result = await query(sql, [USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, moment(USER_DOB).format("YYYY-MM-DD"), USER_ID]);
+
+    return result
+}
+
+const deleteUser = async(id) =>{
+    let sql = `DELETE FROM user WHERE USER_ID = ?`;
+    const result = await query(sql, [id]);
+
+    return result;
+}
+
+
 
 module.exports = {
     loadUser,
     loadSingleUser,
     insertUser,
+    updateUser,
+    deleteUser
 }
