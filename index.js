@@ -4,7 +4,7 @@ const { query } = require("./database/db");
 require('dotenv').config();
 const mysql = require("mysql2");
 
-const port = process.env.PORT;
+const port = process.env.PORT || 34000
 
 const app = express();
 
