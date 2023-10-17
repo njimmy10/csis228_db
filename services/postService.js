@@ -24,7 +24,7 @@ const loadSinglePost = async(id)=>{
 
 const insertPost = async(post) =>{
     const {POST_TITLE, POST_BODY, POST_ATTACHMENT, POST_CREATION_DATE, POST_USER_ID} = post;
-    let inserSQL = `INSERT INTO posts
+    let inserSQL = `INSERT INTO posts (POST_TITLE, POST_BODY, POST_ATTACHMENT, POST_CREATION_DATE, POST_USER_ID)
     VALUES 
     (?, ?, ?, ?, ?)`;
 
