@@ -20,6 +20,7 @@ const insertUserController = async(req, res) => {
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
     }
+
     
     const {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = req.body;
     const user = {

@@ -9,6 +9,8 @@ const port = process.env.PORT || 34000
 const app = express();
 
 const userRoute = require('./routes/user.route');
+const postRoute = require('./routes/post.route');
+
 const { userSignupValidator } = require("./validator/user-validator");
 
 app.use(express.json());
@@ -19,6 +21,7 @@ app.get("/", (req, res)=>{
 });
 
 app.use('/api/users', userRoute);
+app.use('/api/posts', postRoute);
 
 app.listen(port, ()=>{
     console.log(`my app is listening ${port}`);
