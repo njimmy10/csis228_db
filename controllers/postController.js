@@ -44,7 +44,7 @@ const insertPostController = async (req, res) => {
         const result = await insertPost(post);
         res.status(200).json({ result });
     } catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: error });
     }
     }
 
