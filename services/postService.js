@@ -28,7 +28,7 @@ const insertPost = async(post) =>{
     VALUES 
     (?, ?, ?, ?, ?, ?)`;
 
-    const result = await query(inserSQL, [1, POST_TITLE, POST_BODY, POST_ATTACHMENT, moment(POST_CREATION_DATE).format("YYYY-MM-DD"), POST_USER_ID]);
+    const result = await query(inserSQL, [POST_TITLE, POST_BODY, POST_ATTACHMENT, moment(POST_CREATION_DATE).format("YYYY-MM-DD"), POST_USER_ID]);
 
     return result;
 }
