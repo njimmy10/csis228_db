@@ -62,11 +62,15 @@ const User = sequelize.define('User', {
     }, ]
 });
 
-User.hasMany(Post, {
-    foreignKey: 'POST_USER_ID',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-});
+User.associations = () => {
+    User.hasMany(Post, {
+        foreignKey: 'POST_USER_ID',
+        as: 'posts'
+    })
+}
+
+User.sync()
+
 
 
 module.exports = User;
