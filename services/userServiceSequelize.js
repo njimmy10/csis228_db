@@ -1,12 +1,12 @@
 const User = require('../model/User');
 
 const getAllUsers = async() => {
-    const users = await User.findAll({include: 'posts'});
+    const users = await User.findAll();
     return users;
 }
 
 const getSingleUser = async(id) => {
-    const user = await User.findByPk(id, {include: 'posts'});
+    const user = await User.findByPk(id);
     return user;
 }
 
