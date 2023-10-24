@@ -10,6 +10,7 @@ const app = express();
 
 const userRoute = require('./routes/user.route');
 const postRoute = require('./routes/post.route');
+const userSeqRoute = require('./routes/user.route.seq');
 
 const { userSignupValidator } = require("./validator/user-validator");
 
@@ -22,6 +23,7 @@ app.get("/", (req, res)=>{
 
 app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
+app.use('/api/sequelize/users', userSeqRoute);
 
 app.listen(port, ()=>{
     console.log(`my app is listening ${port}`);
