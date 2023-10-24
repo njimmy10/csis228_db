@@ -39,14 +39,6 @@ const User = sequelize.define('User', {
     USER_BIO: {
         type: DataTypes.STRING(50),
         allowNull: false
-    },
-    USER_CREATED_AT: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    USER_UPDATED_AT: {
-        type: DataTypes.DATE,
-        allowNull: false
     }
 }, {
     sequelize,
