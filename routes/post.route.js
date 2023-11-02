@@ -3,13 +3,14 @@ const router = express.Router();
 
 const { getAllPostsController, getSinglePostController, insertPostController, updatePostController, deletePostController } = require('../controllers/postController');
 const { postInsertValidator } = require('../validator/post-validator');
+const { authenticateToken } = require('./middleware');
 
 
-router.get('/posts', getAllPostsController);
-router.get('/posts/:id', getSinglePostController);
-router.post('/posts', postInsertValidator, insertPostController);
-router.put('/posts/:id', postInsertValidator, updatePostController);
-router.delete('/posts/:id', deletePostController);
+router.get('/posts', authenticateToken ,getAllPostsController);
+router.get('/posts/:id',authenticateToken, getSinglePostController);
+router.post('/posts', postInsertValidator, authenticateToken ,insertPostController);
+router.put('/posts/:id', postInsertValidator, authenticateToken, updatePostController);
+router.delete('/posts/:id', authenticateToken, deletePostController);
 
 module.exports = router;
 

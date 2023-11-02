@@ -1,5 +1,29 @@
+const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
-const { loadUser, insertUser } = require("../services/userService")
+const { loadUser, insertUser, authenticate} = require("../services/userService")
+
+
+
+const authenticateController = async(req, res) => {
+    const {username, password} = req.body;
+    if (!username || !password) {
+        return res.status(401).json({message: "Username and password are required"})
+    }
+    try{
+        const user = await authenticate(username, password);
+        if (!user) {
+            return res.status(401).json({message: "Username or password is incorrect"})
+        }
+        const accessToken = jwt.sign({username: user.USER_USERNAME, id: user.USER_ID}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h"});
+        res.status(200).json({accessToken});
+    }catch(error){
+        res.status(500).json({message: "Internal server error"})
+    }
+}
+
+
+
+            
 
 const getAllUsersController = async(req, res) => {
     /**
@@ -43,5 +67,6 @@ const insertUserController = async(req, res) => {
 
 module.exports = {
     getAllUsersController,
-    insertUserController
+    insertUserController,
+    authenticateController
 }
