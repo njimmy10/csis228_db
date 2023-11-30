@@ -14,7 +14,7 @@
 
 <!-- {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = user; -->
 
-  <form action="/api/users/updateUser/<%= user.USER_ID %>" method="PUT">
+  <form action="/api/users/updateUser/<%= user.USER_ID %>" method="POST">
     <label for="userName">Username</label>
     <input type="text" name="USER_USERNAME" id="userName" value="<%= user.USER_USERNAME %>" required>
     <br>

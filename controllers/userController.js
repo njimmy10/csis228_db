@@ -107,6 +107,7 @@ const updateUserForm =async(req, res) => {
     const {id} = req.params;
 
     const user = await loadSingleUser(id);
+    console.log(user);
     res.render("editUser", {user});
 }
 
