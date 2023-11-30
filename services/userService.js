@@ -34,8 +34,9 @@ const loadSingleUser = async(id)=>{
 
 const insertUser = async(user) =>{
     const {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = user;
-    let inserSQL = `INSERT INTO users
-    VALUES set USER_USERNAME = ?, USER_FULL_NAME = ?, USER_PROFILE_PICTURE = ?, USER_BIO = ?, USER_EMAIL = ?, USER_PASSWORD = ?, USER_DOB = ?`;
+    let inserSQL = `INSERT INTO users (USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB)
+    VALUES (?, ?, ?, ?, ?, ?, ?);
+    `;
 
     const result = await query(inserSQL, [USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, moment(USER_DOB).format("YYYY-MM-DD")]);
 
@@ -44,9 +45,9 @@ const insertUser = async(user) =>{
 
 const updateUser = async(user) =>{
     const {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = user;
-    let sql = `INSERT INTO users (USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB)
-    VALUES (?, ?, ?, ?, ?, ?, ?);
-    `;
+    let sql = `UPDATE users
+    SET USER_USERNAME = ?, USER_FULL_NAME = ?, USER_PROFILE_PICTURE = ?, USER_BIO = ?, USER_EMAIL = ?, USER_PASSWORD = ?, USER_DOB = ?
+    WHERE USER_ID = ?`;
 
     const result = await query(sql, [USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, moment(USER_DOB).format("YYYY-MM-DD"), USER_ID]);
 
