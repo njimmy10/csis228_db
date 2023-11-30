@@ -12,6 +12,31 @@
   <h1>Add User</h1>
   <!-- Add your form for adding a user -->
 
+  <!-- USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB -->
+
+  <form action="/api/users/signup" method="POST">
+    <label for="userName">Username</label>
+    <input type="text" name="userName" id="userName" required>
+    <br>
+    <label for="fullName">Full Name</label>
+    <input type="text" name="fullName" id="fullName" required>
+    <br>
+    <label for="profilePicture">Profile Picture</label>
+    <input type="text" name="profilePicture" id="profilePicture" required>
+    <br>
+    <label for="bio">Bio</label>
+    <input type="text" name="bio" id="bio" required>
+    <br>
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" required>
+    <br>
+    <label for="password">Password</label>
+    <input type="text" name="password" id="password" required>
+    <br>
+    <label for="dob">Date of Birth</label>
+    <input type="text" name="dob" id="dob" required>
+    <br>
+    <input type="submit" value="Add User">
   <%- include('partials/footer') %>
 </body>
 </html>
