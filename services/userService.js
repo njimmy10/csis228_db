@@ -35,8 +35,7 @@ const loadSingleUser = async(id)=>{
 const insertUser = async(user) =>{
     const {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = user;
     let inserSQL = `INSERT INTO users
-    VALUES 
-    (?, ?, ?, ?, ?, ?, ?)`;
+    VALUES set USER_USERNAME = ?, USER_FULL_NAME = ?, USER_PROFILE_PICTURE = ?, USER_BIO = ?, USER_EMAIL = ?, USER_PASSWORD = ?, USER_DOB = ?`;
 
     const result = await query(inserSQL, [USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, moment(USER_DOB).format("YYYY-MM-DD")]);
 
