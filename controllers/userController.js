@@ -64,7 +64,7 @@ const updateUserController = async(req, res) => {
 }
 
 
-const insertUserController = async(req, res) => {
+const insertUserController = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
@@ -103,7 +103,7 @@ const addUserForm = (req, res) => {
     res.render("addUser");
 }
 
-const updateUserForm = (req, res) => {
+const updateUserForm =async(req, res) => {
     const {id} = req.params;
 
     const user = await loadSingleUser(id);
