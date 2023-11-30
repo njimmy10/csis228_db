@@ -64,9 +64,14 @@ const insertUserController = async(req, res) => {
     }
 }
 
+const addUserForm = (req, res) => {
+    res.render("addUser");
+}
+
 
 module.exports = {
     getAllUsersController,
     insertUserController,
-    authenticateController
+    authenticateController,
+    addUserForm
 }
