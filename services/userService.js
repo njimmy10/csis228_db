@@ -34,7 +34,7 @@ const loadSingleUser = async(id)=>{
 
 const insertUser = async(user) =>{
     const {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = user;
-    let inserSQL = `INSERT INTO user
+    let inserSQL = `INSERT INTO users
     VALUES 
     (?, ?, ?, ?, ?, ?, ?)`;
 
@@ -45,7 +45,7 @@ const insertUser = async(user) =>{
 
 const updateUser = async(user) =>{
     const {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = user;
-    let sql = `UPDATE user  
+    let sql = `UPDATE users
     SET USER_USERNAME = ?, USER_FULL_NAME = ?, USER_PROFILE_PICTURE = ?, USER_BIO = ?, USER_EMAIL = ?, USER_PASSWORD = ?, USER_DOB = ?
     WHERE USER_ID = ?`;
 
