@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management - List</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+  <%- include('partials/menu') %>
+
+  <h1>List of Users</h1>
+  <ul>
+  <!-- You can use foreach to display users which is a more friendy way to loop ui. in recent example we used traditional for-loop -->
+    <% users.forEach(user => { %>
+      <li><%= user.userName %></li>
+    <% }); %>
+  </ul>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

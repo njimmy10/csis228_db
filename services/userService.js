@@ -38,7 +38,7 @@ const insertUser = async(user) =>{
     VALUES 
     (?, ?, ?, ?, ?, ?, ?)`;
 
-    const result = await query(sql, [USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, moment(USER_DOB).format("YYYY-MM-DD")]);
+    const result = await query(inserSQL, [USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, moment(USER_DOB).format("YYYY-MM-DD")]);
 
     return result;
 }
