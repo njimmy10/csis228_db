@@ -12,6 +12,31 @@
   <h1>Edit User</h1>
   <!-- Add your form for editing a user -->
 
+<!-- {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = user; -->
+
+  <form action="/api/users/updateUser/<%= user.USER_ID %>" method="PUT">
+    <label for="userName">Username</label>
+    <input type="text" name="USER_USERNAME" id="userName" value="<%= user.USER_USERNAME %>" required>
+    <br>
+    <label for="fullName">Full Name</label>
+    <input type="text" name="USER_FULL_NAME" id="fullName" value="<%= user.USER_FULL_NAME %>" required>
+    <br>
+    <label for="profilePicture">Profile Picture</label>
+    <input type="text" name="USER_PROFILE_PICTURE" id="profilePicture" value="<%= user.USER_PROFILE_PICTURE %>" required>
+    <br>
+    <label for="bio">Bio</label>
+    <input type="text" name="USER_BIO" id="bio" value="<%= user.USER_BIO %>" required>
+    <br>
+    <label for="email">Email</label>
+    <input type="text" name="USER_EMAIL" id="email" value="<%= user.USER_EMAIL %>" required>
+    <br>
+    <label for="password">Password</label>
+    <input type="text" name="USER_PASSWORD" id="password" value="<%= user.USER_PASSWORD %>" required>
+    <br>
+    <label for="dob">Date of Birth</label>
+    <input type="text" name="USER_DOB" id="dob" value="<%= user.USER_DOB %>" required>
+    <br>
+    <input type="submit" value="Edit User">
   <%- include('partials/footer') %>
 </body>
 </html>

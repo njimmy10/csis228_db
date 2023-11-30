@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
-const { loadUser, insertUser, authenticate} = require("../services/userService")
+const { loadUser, insertUser, authenticate, loadSingleUser, updateUser} = require("../services/userService")
 
 
 
@@ -39,6 +39,31 @@ const getAllUsersController = async(req, res) => {
     }
 }
 
+const updateUserController = async(req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()})
+    }
+    
+    const {USER_USERNAME, USER_FULL_NAME, USER_PROFILE_PICTURE, USER_BIO, USER_EMAIL, USER_PASSWORD, USER_DOB} = req.body;
+    const user = {
+        USER_USERNAME,
+        USER_FULL_NAME,
+        USER_PROFILE_PICTURE,
+        USER_BIO,
+        USER_EMAIL,
+        USER_PASSWORD,
+        USER_DOB
+    }
+    try{
+        const result = await updateUser(user);
+        res.status(200).json({result});
+    }catch(error){
+        res.status(500).json({message: "Internal server error"})
+    }
+}
+
+
 const insertUserController = async(req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -64,8 +89,25 @@ const insertUserController = async(req, res) => {
     }
 }
 
+const getUserByIdController = async(req, res) => {
+    const {id} = req.params;
+    try{
+        const user = await loadSingleUser(id);
+        res.status(200).json({user});
+    }catch(error){
+        res.status(500).json({message: "Internal server error"})
+    }
+}
+
 const addUserForm = (req, res) => {
     res.render("addUser");
+}
+
+const updateUserForm = (req, res) => {
+    const {id} = req.params;
+
+    const user = await loadSingleUser(id);
+    res.render("editUser", {user});
 }
 
 
@@ -73,5 +115,8 @@ module.exports = {
     getAllUsersController,
     insertUserController,
     authenticateController,
-    addUserForm
+    addUserForm,
+    updateUserForm,
+    updateUserController,
+    getUserByIdController
 }
